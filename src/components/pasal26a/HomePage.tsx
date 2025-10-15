@@ -23,51 +23,51 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
+      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24"
     >
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-center mb-20 max-w-5xl"
+        className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-5xl"
       >
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-[1.1] px-2">
           {content.title}
         </h1>
-        <p className="text-xl md:text-2xl lg:text-3xl text-blue-100/90 mb-4 font-light leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-blue-100/90 mb-3 sm:mb-4 font-light leading-relaxed px-4">
           {content.subtitle}
         </p>
-        <p className="text-sm md:text-base text-blue-200/70 max-w-2xl mx-auto">
+        <p className="text-xs sm:text-sm md:text-base text-blue-200/70 max-w-2xl mx-auto px-4">
           Klik tiap bagian untuk memahami isi pasal ini secara visual dan interaktif
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-7xl w-full">
         {/* Background - Featured card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           whileHover={{ scale: 1.02, y: -8 }}
-          className="cursor-pointer md:col-span-2 lg:col-span-2 lg:row-span-2"
+          className="cursor-pointer sm:col-span-2 lg:row-span-2"
           onClick={() => onNavigate("background" as Section)}
         >
           <Card className={cn(
-            "p-10 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[320px]",
+            "p-6 sm:p-8 lg:p-10 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[280px] sm:min-h-[320px]",
             "from-blue-500/90 to-blue-600/90"
           )}>
             <div>
-              <div className="inline-block px-4 py-1.5 bg-white/20 rounded-full mb-6">
+              <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full mb-4 sm:mb-6">
                 <span className="text-xs font-semibold text-white uppercase tracking-wider">Mulai Di Sini</span>
               </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight">
                 Latar Belakang
               </h3>
-              <p className="text-white/90 text-lg md:text-xl leading-relaxed">
+              <p className="text-white/90 text-base sm:text-lg lg:text-xl leading-relaxed">
                 Mengapa Pasal 26A hadir dan bagaimana perkembangannya dalam sistem hukum Indonesia
               </p>
             </div>
-            <div className="flex items-center text-white/80 mt-8">
+            <div className="flex items-center text-white/80 mt-6 sm:mt-8">
               <span className="text-sm font-medium">Jelajahi Timeline</span>
               <ChevronRight className="h-5 w-5 ml-2" />
             </div>
@@ -80,18 +80,18 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           whileHover={{ scale: 1.02, y: -8 }}
-          className="cursor-pointer lg:row-span-1"
+          className="cursor-pointer"
           onClick={() => onNavigate("article" as Section)}
         >
           <Card className={cn(
-            "p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[220px]",
+            "p-6 sm:p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[200px] sm:min-h-[220px]",
             "from-indigo-500/90 to-indigo-600/90"
           )}>
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                 Isi Pasal
               </h3>
-              <p className="text-white/90 text-base leading-relaxed">
+              <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                 Bunyi lengkap dan rinci Pasal 26A
               </p>
             </div>
@@ -105,18 +105,18 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
           whileHover={{ scale: 1.02, y: -8 }}
-          className="cursor-pointer lg:row-span-1"
+          className="cursor-pointer"
           onClick={() => onNavigate("explanation" as Section)}
         >
           <Card className={cn(
-            "p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[220px]",
+            "p-6 sm:p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[200px] sm:min-h-[220px]",
             "from-purple-500/90 to-purple-600/90"
           )}>
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                 Penjelasan Hukum
               </h3>
-              <p className="text-white/90 text-base leading-relaxed">
+              <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                 Makna dan interpretasi mendalam
               </p>
             </div>
@@ -130,22 +130,22 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
           whileHover={{ scale: 1.02, y: -8 }}
-          className="cursor-pointer md:col-span-2"
+          className="cursor-pointer sm:col-span-2"
           onClick={() => onNavigate("cases" as Section)}
         >
           <Card className={cn(
-            "p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[200px]",
+            "p-6 sm:p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[180px] sm:min-h-[200px]",
             "from-pink-500/90 to-pink-600/90"
           )}>
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                 Contoh Kasus Nyata
               </h3>
-              <p className="text-white/90 text-base md:text-lg leading-relaxed">
+              <p className="text-white/90 text-sm sm:text-base lg:text-lg leading-relaxed">
                 Penerapan Pasal 26A dalam praktik hukum dengan analisis mendalam
               </p>
             </div>
-            <ChevronRight className="h-6 w-6 text-white/80 mt-4 ml-auto" />
+            <ChevronRight className="h-5 sm:h-6 w-5 sm:w-6 text-white/80 mt-4 ml-auto" />
           </Card>
         </motion.div>
 
@@ -159,14 +159,14 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
           onClick={() => onNavigate("impact" as Section)}
         >
           <Card className={cn(
-            "p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[200px]",
+            "p-6 sm:p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[180px] sm:min-h-[200px]",
             "from-orange-500/90 to-orange-600/90"
           )}>
             <div>
-              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                 Dampak & Makna
               </h3>
-              <p className="text-white/90 text-sm leading-relaxed">
+              <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
                 Pengaruh terhadap sistem hukum
               </p>
             </div>
@@ -184,14 +184,14 @@ export function HomePage({ content, sectionCards, onNavigate }: HomePageProps) {
           onClick={() => onNavigate("reflection" as Section)}
         >
           <Card className={cn(
-            "p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[200px]",
+            "p-6 sm:p-8 h-full bg-gradient-to-br backdrop-blur-sm border-white/20 hover:border-[#d4af37]/50 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between min-h-[180px] sm:min-h-[200px]",
             "from-teal-500/90 to-teal-600/90"
           )}>
             <div>
-              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                 Refleksi
               </h3>
-              <p className="text-white/90 text-sm leading-relaxed">
+              <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
                 Renungan dan kesimpulan
               </p>
             </div>
