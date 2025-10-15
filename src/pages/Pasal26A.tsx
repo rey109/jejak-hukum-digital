@@ -30,7 +30,10 @@ export default function Pasal26A() {
   if (!content) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1a2e] via-[#2d1b3d] to-[#1a1a2e]">
-        <div className="text-white text-xl">Memuat konten...</div>
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#d4af37] border-t-transparent rounded-full animate-spin" />
+          <div className="text-white text-lg">Memuat konten...</div>
+        </div>
       </div>
     );
   }
@@ -58,9 +61,9 @@ export default function Pasal26A() {
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#2d1b3d] to-[#1a1a2e] relative overflow-hidden">
       {/* Enhanced background with legal theme */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-amber-600 rounded-full filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-900 rounded-full filter blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-900 rounded-full filter blur-3xl animate-pulse delay-500" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#d4af37] rounded-full filter blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#8b1538] rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#1e3a8a] rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
       </div>
 
       {/* Legal pattern overlay */}
@@ -68,37 +71,46 @@ export default function Pasal26A() {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }} />
 
-      {/* Navigation Menu */}
-      <motion.div 
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3"
-      >
-        {navigationItems.map((item) => (
-          <motion.div
-            key={item.id}
-            whileHover={{ scale: 1.1, x: -5 }}
-            className="group relative"
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setCurrentSection(item.id)}
-              className={cn(
-                "rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all border border-amber-600/30",
-                currentSection === item.id && "bg-amber-600 hover:bg-amber-700 border-amber-500"
-              )}
+      {/* Floating Navigation Menu - Improved */}
+      {currentSection !== "home" && (
+        <motion.div 
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: 100, opacity: 0 }}
+          className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-2"
+        >
+          {navigationItems.map((item) => (
+            <motion.div
+              key={item.id}
+              whileHover={{ scale: 1.1, x: -5 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative"
             >
-              <item.icon className="h-5 w-5 text-white" />
-            </Button>
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-              <div className="bg-gradient-to-r from-amber-600 to-red-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap shadow-lg font-semibold">
-                {item.label}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setCurrentSection(item.id)}
+                className={cn(
+                  "rounded-full w-12 h-12 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300 border",
+                  currentSection === item.id 
+                    ? "bg-[#d4af37] hover:bg-[#d4af37]/90 border-[#d4af37] shadow-lg shadow-[#d4af37]/50" 
+                    : "border-white/20 hover:border-[#d4af37]/50"
+                )}
+              >
+                <item.icon className={cn(
+                  "h-5 w-5 transition-colors",
+                  currentSection === item.id ? "text-gray-900" : "text-white"
+                )} />
+              </Button>
+              <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                <div className="bg-gradient-to-r from-[#d4af37] to-[#8b1538] text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap shadow-xl font-semibold">
+                  {item.label}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10">
@@ -152,58 +164,75 @@ export default function Pasal26A() {
         </AnimatePresence>
       </div>
 
-      {/* Enhanced Modal with better styling */}
+      {/* Enhanced Modal */}
       <AnimatePresence>
         {selectedModal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedModal(null)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-br from-white to-amber-50 rounded-2xl p-8 max-w-3xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl border-2 border-amber-600/20"
+              className="bg-gradient-to-br from-white via-amber-50/50 to-white rounded-3xl p-10 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl border-2 border-[#d4af37]/30"
             >
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setSelectedModal(null)}
-                className="absolute top-4 right-4 rounded-full hover:bg-amber-100"
+                className="absolute top-6 right-6 rounded-full hover:bg-[#d4af37]/20 w-10 h-10"
               >
                 <X className="h-5 w-5" />
               </Button>
-              <div className="space-y-6 pr-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-600 to-red-900 flex items-center justify-center text-white font-bold text-xl">
+              
+              <div className="space-y-8 pr-8">
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#8b1538] flex items-center justify-center text-white text-3xl shadow-lg">
                     ⚖️
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 tracking-tight flex-1">{selectedModal.title}</h3>
+                  <div className="flex-1">
+                    <h3 className="text-4xl font-bold text-gray-900 tracking-tight mb-2">
+                      {selectedModal.title}
+                    </h3>
+                    <div className="h-1.5 w-32 bg-gradient-to-r from-[#d4af37] to-[#8b1538] rounded-full" />
+                  </div>
                 </div>
-                <div className="h-1 w-24 bg-gradient-to-r from-amber-600 to-red-900 rounded-full" />
-                <p className="text-gray-700 leading-relaxed text-lg">{selectedModal.detail || selectedModal.description}</p>
+                
+                <p className="text-gray-700 leading-relaxed text-lg">
+                  {selectedModal.detail || selectedModal.description}
+                </p>
+                
                 {selectedModal.analysis && (
-                  <div className="bg-gradient-to-br from-amber-50 to-red-50 p-6 rounded-xl border-l-4 border-amber-600 shadow-inner">
-                    <p className="text-sm font-bold text-amber-900 mb-3 uppercase tracking-wide flex items-center gap-2">
-                      <span className="text-xl">📋</span> Analisis Hukum Mendalam:
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-2xl border-l-4 border-[#d4af37] shadow-inner">
+                    <p className="text-sm font-bold text-[#8b1538] mb-4 uppercase tracking-wider flex items-center gap-3">
+                      <span className="text-2xl">📋</span> Analisis Hukum Mendalam
                     </p>
-                    <p className="text-base text-gray-800 leading-relaxed">{selectedModal.analysis}</p>
+                    <p className="text-base text-gray-800 leading-relaxed">
+                      {selectedModal.analysis}
+                    </p>
                   </div>
                 )}
+                
                 {selectedModal.examples && selectedModal.examples.length > 0 && (
-                  <div className="space-y-3">
-                    <p className="font-bold text-gray-900 text-lg flex items-center gap-2">
-                      <span className="text-xl">💡</span> Contoh Konkret:
+                  <div className="space-y-4">
+                    <p className="font-bold text-gray-900 text-xl flex items-center gap-3">
+                      <span className="text-2xl">💡</span> Contoh Konkret
                     </p>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       {selectedModal.examples.map((ex: string, i: number) => (
-                        <li key={i} className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border border-amber-100">
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold">{i + 1}</span>
-                          <span className="text-gray-700 leading-relaxed">{ex}</span>
+                        <li key={i} className="flex items-start gap-4 bg-white p-6 rounded-xl shadow-sm border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors">
+                          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#8b1538] text-white flex items-center justify-center text-sm font-bold shadow-md">
+                            {i + 1}
+                          </span>
+                          <span className="text-gray-700 leading-relaxed flex-1">
+                            {ex}
+                          </span>
                         </li>
                       ))}
                     </ul>
